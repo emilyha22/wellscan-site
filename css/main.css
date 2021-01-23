@@ -1,0 +1,240 @@
+/*========= navbar ==========*/
+.navbar img{
+    width: 200px;
+}
+
+.navbar{
+    background-color: white;
+}
+
+/*=========== text styles =============*/
+h1{
+    font-family: 'Arvo', serif;
+    font-size: 45px;
+}
+
+
+p{
+    font-family: 'Roboto', sans-serif;
+    color: #414143;
+}
+
+span#bold-header{
+    font-weight: 600;
+}
+
+a.main-btn{
+    text-transform: uppercase;
+    color: #414143;
+    letter-spacing: 1px;
+    padding: 15px 25px;
+    background: white;
+    border: 1px solid #D35A3E;
+    text-decoration: none;
+    transition: .3s ease-in-out;
+}
+
+a.main-btn:hover, a.main-btn:focus, a.main-btn:active{
+    color: white;
+    background: transparent;
+    border: 1px solid white;
+}
+
+h2{
+    font-family: 'Arvo', serif;
+    font-size: 35px;
+    color: #30595F;
+}
+
+h3{
+    font-family: 'Arvo', serif;
+    font-size: 20px;
+    color:#D35A3E;
+    text-transform: uppercase;
+    margin: 20px 0px 15px 0px;
+}
+
+h4{
+font-family: 'roboto', sans-serif;
+font-size: 20px;   
+text-transform: uppercase;
+font-weight: 400;
+}
+
+
+
+/*============= header ==============*/
+.wellscan-img img{
+    max-width: 100%;
+}
+
+.header{
+    background-color:#D35A3E;
+    padding: 100px 0px;
+}
+
+.header h1{
+    color: white;
+}
+
+.header p{
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    line-height: 26px;
+}
+
+@media(max-width:991px){
+    .header-text{
+        order:2
+    }
+
+    .wellscan-img {
+        order: 1;
+    }
+
+    .header{
+        padding: 60px 0px 100px 0px;
+    }
+
+    .wellscan-img img{
+        margin-bottom: 30px;
+    }
+}
+/*============= intro =============*/
+.section-pad{
+    padding: 80px 0px;
+}
+
+a.orange-text{
+    color: #D35A3E;
+    
+}
+
+.carrot-intro img{
+    width: 30px;
+}
+
+.carrot-intro {
+    text-align: center;
+}
+
+.intro h2{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/*============== wellscan app ==============*/
+.gray{
+    background-color: whitesmoke;
+}
+
+.app-col img{
+    height: 50px;
+}
+
+.app-col{
+    text-align: center;
+    padding: 40px;
+    background: white;
+    margin:30px 20px 40px 20px;
+
+}
+
+@media (min-width:991px){
+    .app-col{
+        height: 300px;
+    }
+}
+
+/*================== wellscan api =================*/
+@media (min-width:768px){
+    .wellscan-api{
+    border-left: solid 1px;
+    padding-left: 40px;
+    align-items: center;
+    display: flex;
+    }
+}
+
+/*================= form ==================*/
+.form{
+    background-color: #414143;
+}
+
+.form h2{
+    color: white;
+}
+
+.form img{
+    width:70px;
+    margin-bottom: 20px;
+}
+
+.form-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 0px 40px 0px;
+}
+
+form label{
+    color: white;
+    font-family: 'roboto',sans-serif;
+    margin-bottom: 30px;
+}
+
+form input{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid white;
+    background: transparent;
+    margin-bottom: 7px;
+}
+
+.form-container{
+    display: flex;
+}
+
+form textarea{
+    width: 100%;
+}
+
+form button{
+    text-transform: uppercase;
+    color: #414143;
+    letter-spacing: 1px;
+    padding: 12px 15px;
+    background: white;
+    border: 1px solid white;
+    text-decoration: none;
+    transition: .3s ease-in-out;
+}
+
+form button:hover, form button:focus, form button:active{
+    color: white!important;
+    background: transparent!important;
+}
+
+/*============== footer ==============*/
+footer{
+    background-color: #D35A3E;
+    padding: 40px 60px;
+    text-align: center;
+}
+
+footer img{
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+footer p{
+    color: white;
+}
+
+footer .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
