@@ -69,7 +69,7 @@ font-weight: 400;
 }
 
 .header{
-    background-color:#C66043;
+    background-color:#d45a39;
     padding: 100px 0px;
 }
 
@@ -188,10 +188,11 @@ form label{
 form input{
     color: white;
     width: 100%;
-    border: none;
     border-bottom: 1px solid white;
     background: transparent;
-    margin-bottom: 7px;
+    margin-bottom: 7px;    
+    border: 0;
+    -webkit-border-radius: 0;
 }
 
 .form-container{
