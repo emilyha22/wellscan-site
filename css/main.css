@@ -108,7 +108,10 @@ font-weight: 400;
 
 a.orange-text{
     color: #D35A3E;
-    
+}
+
+a.white-text {
+    color:#fff;
 }
 
 .carrot-intro img{
