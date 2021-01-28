@@ -309,11 +309,7 @@ form.calc-form{
     color: #fff;
 }
 
-.calc-form .check input:hover + label{
-    border-color: #24474c;
-    background: #30595F;
-    color: #fff;
-}
+
 
 
 .calc h1{
