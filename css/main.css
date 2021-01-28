@@ -279,11 +279,6 @@ form.calc-form{
     color: #fff;
   }
 
-  .radio input:hover + label{
-    border-color: #24474c;
-    background: #30595F;
-    color: #fff;
-  }
 
 .calc-form .row{
     padding-left: 15px;
