@@ -194,6 +194,7 @@ form.contact input{
     border-bottom: 1px solid white;
     background: transparent;
     margin-bottom: 7px;
+    color: white;
 }
 
 .form-container{
@@ -358,6 +359,24 @@ form.calc-form button:hover, form.calc-form button:focus, form.calc-form button:
     margin-bottom: 30px;
 }
 
-.container-fluid.calc {
-    background-color: whitesmoke;
+.result-bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0px;
+    background:whitesmoke;
+    margin-bottom: 60px;
+}
+
+.result-bar h2{
+    color: #414143;
+    margin-left: 30px;
+}
+
+.container-fluid.result{
+    padding: 0px;
+}
+
+.result-bar img{
+    width: 50px;
 }
