@@ -41,77 +41,65 @@
                 <h2>Type of Food</h2>
                 <h3>Select all that apply</h3>
                 <div class="row">
-                    <div class="check">
-                        <input type="checkbox" name='fruitVeg' id="fruitVeg">
+                    <div class="radio">
+                        <input type="radio" name='foodType' id="fruitVeg">
                         <label for="fruitVeg" id="fruitVeg">Fruit / Vegetable</label>
                     </div>
     
-                    <div class="check">
-                        <input type="checkbox" name='protein' id="protein">
+                    <div class="radio">
+                        <input type="radio" name='foodType' id="protein">
                         <label for="protein" id="protein">Protein</label>
                     </div>
     
-                    <div class="check">
-                        <input type="checkbox" name='dairy' id="dairy">
+                    <div class="radio">
+                        <input type="radio" name='foodType' id="dairy">
                         <label for="dairy" id="dairy">Dairy</label>
                     </div>
     
-                    <div class="check">
-                        <input type="checkbox" name='nonDairy' id="nonDairy">
+                    <div class="radio">
+                        <input type="radio" name='foodType' id="nonDairy">
                         <label for="nonDairy" id="nonDairy">Non-Dairy Alternative</label>
                     </div>
     
-                    <div class="check">
-                        <input type="checkbox" name='beverage' id="beverage">
+                    <div class="radio">
+                        <input type="radio" name='foodType' id="beverage">
                         <label for="beverage" id="beverage">Beverage</label>
                     </div>
     
-                    <div class="check">
-                        <input type="checkbox" name='mixedDish' id="mixedDish">
+                    <div class="radio">
+                        <input type="radio" name='foodType' id="mixedDish">
                         <label for="mixedDish" id="mixedDish">Mixed Dish</label>
                     </div>
     
-                    <div class="check">
-                        <input type="checkbox" name='processedPackage' id="processedPackage">
+                    <div class="radio">
+                        <input type="radio" name='foodType' id="processedPackage">
                         <label for="processedPackage" id="processedPackage">Processed / Prepackaged Snack</label>
                     </div>
     
-                    <div class="check">
-                        <input type="checkbox" name='dessert' id="dessert">
+                    <div class="radio">
+                        <input type="radio" name='foodType' id="dessert">
                         <label for="dessert" id="dessert">Dessert</label>
                     </div>
+
+                    <div class="radio">
+                        <input type="radio" name='foodType' id="grainReg">
+                        <label for="grainReg" id="grainReg">Non-Whole Grain</label>
+                    </div>
+
+                    <div class="radio">
+                        <input type="radio" name='foodType' id="grainWhole">
+                        <label for="grainWhole" id="grainWhole">Whole Grain</label>
+                    </div>
+
                     </div>
             </div>
-
-                <div class="calc-sec">
-                    <h2>Grains</h2>
-                    <h3>Select one</h3>
-                    <div class="row">
-    
-                        <div class="radio">
-                            <input type="radio" name='grainChoice' id="grain" value="grain">
-                            <label for="grain" id="grain">Grain</label>
-                        </div>
-        
-                        <div class="radio">
-                            <input type="radio" name='grainChoice' id="wholeGrain" value="wholeGrain">
-                            <label for="wholeGrain" id="wholeGrain">Whole Grain</label>
-                        </div>
-        
-                        <div class="radio">
-                            <input type="radio" name='grainChoice' id="none" value="none">
-                            <label for="none" id="none">None</label>
-                        </div>
-                    </div>
-                </div>
                 
-
                 <div class="calc-sec">
                     <h2>Nutrional Facts</h2>
                     <h3>Sodium</h3>
                     <div class="row">
                         <div class="textbox">
-                            <input type="number" name='sodium' id="sodium" placeholder="">
+                            <input pattern="[0-9]*" inputmode="numeric" type="number" name='sodium' id="sodium" placeholder="">
                             <label for="sodium" id="sodium">mg</label>
                         </div>
                     </div>
@@ -119,7 +107,7 @@
                     <h3>Saturated Fat</h3>
                     <div class="row">
                         <div class="textbox">
-                            <input type="number" name='fat' id="fat" placeholder="">
+                            <input pattern="[0-9]*" inputmode="numeric" type="number" name='fat' id="fat" placeholder="">
                             <label for="fat" id="fat">g</label>
                         </div>
                     </div>
@@ -127,7 +115,7 @@
                     <h3>Added Sugars</h3>
                     <div class="row">
                         <div class="textbox">
-                            <input type="number" name='addedSugar' id="addedSugar" placeholder="">
+                            <input pattern="[0-9]*" inputmode="numeric" type="number" name='addedSugar' id="addedSugar" placeholder="">
                             <label for="addedSugar" id="addedSugar">g</label>
                         </div>
                     </div>
@@ -136,7 +124,7 @@
                     <p>If "added sugars" value is not available</p>
                     <div class="row">
                         <div class="textbox">
-                            <input type="number" name='sugar' id="sugar" placeholder="">
+                            <input pattern="[0-9]*" inputmode="numeric" type="number" name='sugar' id="sugar" placeholder="">
                             <label for="sugar" id="sugar">g</label>
                         </div>
                     </div>

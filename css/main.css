@@ -343,7 +343,7 @@ form.calc-form button:hover, form.calc-form button:focus, form.calc-form button:
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px 0px;
+    padding: 30px 15px;
     background:whitesmoke;
     margin-bottom: 60px;
 }
