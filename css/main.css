@@ -255,9 +255,6 @@ form.calc-form{
     margin:30px 0px;
 }
 
-.calc-form input[type="checkbox"]{
-    display: none;
-  }
 
   .calc-form input[type="radio"]{
     display: none;
@@ -288,25 +285,6 @@ form.calc-form{
     padding-left: 15px;
 }
 
-.calc-form .check input + label {
-    box-shadow: 2px 2px 12px #44444414;
-    margin-right: 25px;
-    margin-bottom: 25px;
-    display: inline-block;
-    border: 1px solid #24474c;
-    padding: 10px 20px;
-    border-radius: 36px;
-    position: relative;
-    cursor: pointer;
-    transition: .1s ease-in-out;
-}
-
-   
-.calc-form .check input:checked + label{
-    border-color: #24474c;
-    background: #30595F;
-    color: #fff;
-}
 
 
 
