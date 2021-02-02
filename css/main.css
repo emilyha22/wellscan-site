@@ -190,11 +190,13 @@ form.contact label{
 
 form.contact input{
     width: 100%;
-    border: none;
+    border: 0;
+    -webkit-border-radius: 0;
     border-bottom: 1px solid white;
     background: transparent;
     margin-bottom: 7px;
     color: white;
+    
 }
 
 .form-container{
