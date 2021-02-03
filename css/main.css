@@ -264,11 +264,11 @@ form.calc-form{
 
  .radio input + label {
     box-shadow: 2px 2px 12px #44444414;
-    margin-right: 25px;
-    margin-bottom: 25px;
+    margin-right: 15px;
+    margin-bottom: 15px;
     display: inline-block;
     border: 1px solid #24474c;
-    padding: 10px 20px;
+    padding: 9px 18px;
     border-radius: 36px;
     position: relative;
     cursor: pointer;
@@ -287,25 +287,25 @@ form.calc-form{
     padding-left: 15px;
 }
 
-
-
-
-
 .calc h1{
 color: #414143;
 padding: 65px 0px;
 }
 
+/*
 .calc-form .textbox{
     margin-bottom: 20px;
 }
+*/
 
 .calc-form .textbox input{
+    /*
     width: 100px;
     background: #efefef;
     margin-right: 10px;
     padding: 10px 20px;
-    border: #dcdcdc 1px solid;
+    */
+    border: #ffffff 1px solid;
     border-radius: 9px;
     color: #414143;
 }
@@ -315,7 +315,7 @@ padding: 65px 0px;
 }
 
 .calc h3{
-    color:#30595F;
+    margin-bottom: 10px;
 }
 
 .calc-form button{
@@ -359,4 +359,30 @@ form.calc-form button:hover, form.calc-form button:focus, form.calc-form button:
 
 .result-bar img{
     width: 50px;
+}
+
+.calc-sec h4{
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+
+@media (max-width:768px){
+    .calc h1{
+        padding: 0px;
+        font-size: 30px;
+    }
+}
+
+.nutrition-div{
+    padding: 8px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #d2d2d2;
+}
+
+.nutrition-div p{
+    margin-bottom: 0px;
+    color: #31595f;
 }

@@ -29,114 +29,106 @@
     </section>
 
     <section class="container calc">
-        <form class="calc-form" action="https://formspree.io/f/xbjpwevb" method="POST">
+        <form id="calc-form" class="calc-form">
             <div class="calc-sec">
-                <h2>Type of Food</h2>
-                <h3>Select one</h3>
+                <h3>Category</h3>
+                <h4>Select one</h4>
                 <div class="row">
                     <div class="radio">
-                        <input type="radio" name='foodType' id="fruitVeg">
+                        <input type="radio" name='foodType' id="fruitVeg" value="fruit-vegetable">
                         <label for="fruitVeg" id="fruitVeg">Fruit / Vegetable</label>
                     </div>
     
                     <div class="radio">
-                        <input type="radio" name='foodType' id="protein">
+                        <input type="radio" name='foodType' id="protein" value="protein">
                         <label for="protein" id="protein">Protein</label>
                     </div>
     
                     <div class="radio">
-                        <input type="radio" name='foodType' id="dairy">
+                        <input type="radio" name='foodType' id="dairy" value="dairy">
                         <label for="dairy" id="dairy">Dairy</label>
                     </div>
     
-                    <div class="radio">
-                        <input type="radio" name='foodType' id="nonDairy">
+                    <!-- <div class="radio">
+                        <input type="radio" name='foodType' id="nonDairy" value="nonDairy">
                         <label for="nonDairy" id="nonDairy">Non-Dairy Alternative</label>
-                    </div>
+                    </div> -->
     
                     <div class="radio">
-                        <input type="radio" name='foodType' id="beverage">
+                        <input type="radio" name='foodType' id="beverage" value="beverage">
                         <label for="beverage" id="beverage">Beverage</label>
                     </div>
     
                     <div class="radio">
-                        <input type="radio" name='foodType' id="mixedDish">
+                        <input type="radio" name='foodType' id="mixedDish" value="mixed-dish">
                         <label for="mixedDish" id="mixedDish">Mixed Dish</label>
                     </div>
     
                     <div class="radio">
-                        <input type="radio" name='foodType' id="processedPackage">
-                        <label for="processedPackage" id="processedPackage">Processed / Prepackaged Snack</label>
+                        <input type="radio" name='foodType' id="processedPackage" value="snack-whole-grain">
+                        <label for="processedPackage" id="processedPackage">Whole Grain Snack</label>
                     </div>
     
-                    <div class="radio">
-                        <input type="radio" name='foodType' id="dessert">
+                    <!-- <div class="radio">
+                        <input type="radio" name='foodType' id="dessert" value="dessert">
                         <label for="dessert" id="dessert">Dessert</label>
-                    </div>
+                    </div> -->
 
                     <div class="radio">
-                        <input type="radio" name='foodType' id="grainReg">
-                        <label for="grainReg" id="grainReg">Non-Whole Grain</label>
-                    </div>
-
-                    <div class="radio">
-                        <input type="radio" name='foodType' id="grainWhole">
+                        <input type="radio" name='foodType' id="grainWhole" value="grain-whole">
                         <label for="grainWhole" id="grainWhole">Whole Grain</label>
+                    </div>
+
+                    <div class="radio">
+                        <input type="radio" name='foodType' id="grainReg" value="grain">
+                        <label for="grainReg" id="grainReg">Non-Whole Grain</label>
                     </div>
 
                     </div>
             </div>
                 
                 <div class="calc-sec">
-                    <h2>Nutrional Facts</h2>
-                    <h3>Sodium</h3>
-                    <div class="row">
+                    <h3>Nutrional Facts</h3>
+
+                    <div class="nutrition-div">
+                        <p>Sodium (mg)</p>
                         <div class="textbox">
-                            <input pattern="[0-9]*" inputmode="numeric" type="number" name='sodium' id="sodium" placeholder="">
-                            <label for="sodium" id="sodium">mg</label>
+                            <input pattern="[0-9]*" placeholder="Enter amount" inputmode="numeric" type="number" name='sodium' id="sodium">
+                        </div>
+                    </div>
+
+                    <div class="nutrition-div">
+                        <p>Saturated Fat (g)</p>
+                        <div class="textbox">
+                            <input pattern="[0-9]*" placeholder="Enter amount" inputmode="numeric" type="number" name='satfat' id="satfat" >
+                        </div>
+                    </div>
+
+                    <div class="nutrition-div">
+                        <p>Sugars (g)</p>
+                        <div class="textbox">
+                            <input pattern="[0-9]*" placeholder="Enter amount" inputmode="numeric" type="number" name='sugar' id="sugar" >
                         </div>
                     </div>
     
-                    <h3>Saturated Fat</h3>
-                    <div class="row">
-                        <div class="textbox">
-                            <input pattern="[0-9]*" inputmode="numeric" type="number" name='fat' id="fat" placeholder="">
-                            <label for="fat" id="fat">g</label>
-                        </div>
-                    </div>
-    
-                    <h3>Added Sugars</h3>
+                    <!-- <h3>Added Sugars</h3>
                     <div class="row">
                         <div class="textbox">
                             <input pattern="[0-9]*" inputmode="numeric" type="number" name='addedSugar' id="addedSugar" placeholder="">
                             <label for="addedSugar" id="addedSugar">g</label>
                         </div>
-                    </div>
-    
-                    <h3>Sugars (optional)</h3>
-                    <p>If "added sugars" value is not available</p>
-                    <div class="row">
-                        <div class="textbox">
-                            <input pattern="[0-9]*" inputmode="numeric" type="number" name='sugar' id="sugar" placeholder="">
-                            <label for="sugar" id="sugar">g</label>
-                        </div>
-                    </div>
+                    </div> -->
                 </div>
-                
-
                 <button type="submit">Submit</button>
         </form>
     </section>
 
-    
+    <section id="result" class="d-none container-fluid result">
+        <div class="result-bar">
+            <h2>The item entered should be choosen <strong id="rank">often</strong></h2>
+        </div>
+    </section>
 
-    <footer class="container-fluid">
-      <div class="container">
-        <img src="img/wellscan_branding-white.png">
-        <p>WellSCAN is a product of the University of Connecticut Digital Experience Group, in partnership with the UConn Rudd Center on Food Policy and Obesity. Support provided by Partnership for a Healthier America, Feeding America, and the Robert Wood Johnson Foundation.</p>
-      </div>
-      
-    </footer>
 
     <!-- Optional JavaScript -->
     <script src="main.js"></script>
@@ -148,6 +140,50 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init();
+
+      var form = document.querySelector("#calc-form");
+      var result = document.querySelector("#result");
+      var rankElement= document.querySelector("#rank");
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        result.classList.add("d-none");
+        
+        let category = e.target.elements.foodType.value;
+        let sugars = e.target.elements.sugar.value;
+        let satfat = e.target.elements.satfat.value;
+        let sodium = e.target.elements.sodium.value;
+
+        let endpoint = "https://v2.api.wellscan.io/api/foods/rankFromNuts/" + category + "/" + sugars + "/" + sodium + "/" + satfat;
+
+        fetch(endpoint)
+                    .then(
+                        function(response) {
+                        if (response.status !== 200) {
+                            console.log('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                            return;
+                        }
+
+                        // Examine the text in the response
+                        response.json().then(function(data) {
+                            updateRankDisplay(data.rank);
+                        });
+                        }
+                    )
+                    .catch(function(err) {
+                        console.log('Fetch Error :-S', err);
+                    });
+        
+      });
+
+      function updateRankDisplay(rank) {
+
+        result.classList.remove("d-none");
+        rankElement.innerHTML = rank;
+
+      }
     </script>
   </body>
 </html>
