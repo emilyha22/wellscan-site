@@ -305,8 +305,9 @@ padding: 65px 0px;
     margin-right: 10px;
     padding: 10px 20px;
     */
-    border: #ffffff 1px solid;
-    border-radius: 9px;
+    border-radius: 0px;
+    border: 0;
+    -webkit-border-radius: 0;
     color: #414143;
     outline: 0;
     height: 30px;
