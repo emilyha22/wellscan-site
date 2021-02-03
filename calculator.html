@@ -32,7 +32,6 @@
         <form id="calc-form" class="calc-form">
             <div class="calc-sec">
                 <h3>Category</h3>
-                <p>Select one</p>
                 <div class="row">
                     <div class="radio">
                         <input type="radio" name='foodType' id="fruitVeg" value="fruit-vegetable">
@@ -88,8 +87,6 @@
             </div>
                 
                 <div class="calc-sec">
-                    <h3>Nutrional Facts</h3>
-
                     <div class="nutrition-div">
                         <p>Sodium (mg)</p>
                         <div class="textbox">
@@ -110,6 +107,13 @@
                             <input pattern="[0-9]*"  placeholder="Enter amount" inputmode="numeric" type="number" name='sugar' id="sugar">
                         </div>
                     </div>
+
+                    <div class="nutrition-div">
+                        <p>Rank</p>
+                        <div class="textbox">
+                            <span id="result" class="d-none badge">choose <span  id="rank"></span></span>
+                        </div>
+                    </div>
     
                     <!-- <h3>Added Sugars</h3>
                     <div class="row">
@@ -118,15 +122,11 @@
                         </div>
                     </div> -->
                 </div>
-                <button type="submit">Submit</button>
+                <button class="btn btn-block" type="submit">calculate</button>
         </form>
     </section>
 
-    <section id="result" class="d-none container-fluid result">
-        <div class="result-bar">
-            <h2>The item entered should be choosen <strong id="rank">often</strong></h2>
-        </div>
-    </section>
+
 
 
     <!-- Optional JavaScript -->
@@ -181,6 +181,7 @@
 
         result.classList.remove("d-none");
         rankElement.innerHTML = rank;
+        result.classList.add(`badge--${rank}`);
 
       }
     </script>

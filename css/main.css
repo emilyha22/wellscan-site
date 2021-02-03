@@ -369,6 +369,23 @@ form.calc-form button:hover, form.calc-form button:focus, form.calc-form button:
     margin-bottom: 20px;
 }
 
+.badge--rarely {
+    background-color:#e73c0e;
+    color:#fff;
+    font-size: 1.2em;
+}
+
+.badge--often {
+    background-color:green;
+    color:#fff;
+    font-size: 1.2em;
+}
+
+.badge--sometimes {
+    background-color:yellow;
+    color:#333;
+    font-size: 1.2em;
+}
 
 @media (max-width:768px){
     .calc h1{
