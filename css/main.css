@@ -308,6 +308,8 @@ padding: 65px 0px;
     border: #ffffff 1px solid;
     border-radius: 9px;
     color: #414143;
+    outline: 0;
+    height: 30px;
 }
 
 .calc h2{
@@ -371,6 +373,9 @@ form.calc-form button:hover, form.calc-form button:focus, form.calc-form button:
     .calc h1{
         padding: 0px;
         font-size: 30px;
+    }
+    .header-calc{
+        padding: 30px 0px 0px 0px;
     }
 }
 
