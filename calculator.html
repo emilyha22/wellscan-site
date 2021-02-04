@@ -143,6 +143,8 @@
       var form = document.querySelector("#calc-form");
       var result = document.querySelector("#result");
       var rankElement= document.querySelector("#rank");
+      var catRadios = document.querySelectorAll("[name='foodType']");
+
 
       form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -153,6 +155,7 @@
         let sugars = e.target.elements.sugar.value;
         let satfat = e.target.elements.satfat.value;
         let sodium = e.target.elements.sodium.value;
+
 
         let endpoint = "https://v2.api.wellscan.io/api/foods/rankFromNuts/" + category + "/" + sugars + "/" + sodium + "/" + satfat;
 
@@ -187,6 +190,14 @@
         result.classList.add(`badge--${rank}`);
 
       }
+
+      catRadios.forEach(function(el){
+        el.addEventListener("click", function() {
+            result.classList.add("d-none");
+            rankElement.innerHTML="";
+        });
+      });
+      
     </script>
   </body>
 </html>
