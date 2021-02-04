@@ -179,6 +179,9 @@
 
       function updateRankDisplay(rank) {
 
+        result.classList.add('badge--often');
+        result.classList.add('badge--rarely');
+        result.classList.add('badge--sometimes');
         result.classList.remove("d-none");
         rankElement.innerHTML = rank;
         result.classList.add(`badge--${rank}`);
