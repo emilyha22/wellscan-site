@@ -105,15 +105,10 @@
                     </div>
 
                     <div class="nutrition-div">
-                        <p>Added Sugars (g)</p>
-
-                        <div>
-                            <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
-                            <label for="btn-check-outlined">Use Total Sugar</label>
-                        </div>
+                        <p><select id="sugarType"><option value="added" selected>Added</option><option value="total">Total</option></option></select> Sugars (g)</p>
     
                         <div class="textbox">
-                            <input pattern="[0-9]*"  placeholder="Enter amount" inputmode="numeric" type="number" name='sugar' id="sugar">
+                            <input pattern="[0-9]*"  placeholder="Enter amount" inputmode="numeric" type="number" name='sugars' id="sugars">
                         </div>
                     </div>
 
@@ -155,6 +150,8 @@
       var rankElement= document.querySelector("#rank");
       var catRadios = document.querySelectorAll("[name='foodType']");
       var btn_reset = document.querySelector("#btn_reset");
+      var input_sugar_type = document.querySelector("#sugarType");
+      var sugarType = "added";
 
       window.addEventListener('DOMContentLoaded', (event) => {
             form.scrollIntoView();
@@ -167,19 +164,38 @@
           form.reset();
       })
 
+      input_sugar_type.addEventListener("change", function() {
+        sugarType = this.value;
+        console.log(sugarType);
+      });
+
       form.addEventListener('submit', function(e) {
         e.preventDefault();
         console.log("Submitted");
         result.classList.add("d-none");
         
         let category = e.target.elements.foodType.value;
-        let sugars = e.target.elements.sugar.value;
+        let sugars, added_sugars;
+
+        if(sugarType == "added") {
+            added_sugars = e.target.elements.sugars.value;
+            sugars = 0;
+        } 
+
+        if (sugarType == "total") {
+            added_sugars = 0;
+            sugars = e.target.elements.sugars.value;
+        }
+
+        
+
+
         let satfat = e.target.elements.satfat.value;
         let sodium = e.target.elements.sodium.value;
 
 
-        let endpoint = "https://v2.api.wellscan.io/api/foods/rankFromNuts/" + category + "/" + sugars + "/" + sodium + "/" + satfat;
-
+        let endpoint = "http://localhost:8000/api/foods/rankFromNuts/" + category + "/" + satfat + "/" + sodium + "/" + added_sugars + "/" + sugars;
+        console.log(endpoint);
         fetch(endpoint)
         .then(
             function(response) {
