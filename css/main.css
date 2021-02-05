@@ -323,13 +323,17 @@ padding: 65px 0px;
 
 .calc-form button{
     text-transform: uppercase;
-    color: #ffffff;
     letter-spacing: 1px;
     padding: 12px 15px;
-    background: #31595f;
-    border: 1px solid #31595f;
+
     text-decoration: none;
     transition: .3s ease-in-out;
+}
+
+.calc-form button.btn-primary {
+    background: #31595f;
+    border: 1px solid #31595f;
+    color: #ffffff;
 }
 
 form.calc-form button:hover, form.calc-form button:focus, form.calc-form button:active{
