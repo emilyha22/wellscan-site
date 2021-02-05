@@ -194,7 +194,7 @@
         let sodium = e.target.elements.sodium.value;
 
 
-        let endpoint = "http://localhost:8000/api/foods/rankFromNuts/" + category + "/" + satfat + "/" + sodium + "/" + added_sugars + "/" + sugars;
+        let endpoint = "https://v2.api.wellscan.io/api/foods/rankFromNuts/" + category + "/" + satfat + "/" + sodium + "/" + added_sugars + "/" + sugars;
         console.log(endpoint);
         fetch(endpoint)
         .then(
