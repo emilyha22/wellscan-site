@@ -106,7 +106,12 @@
 
                     <div class="nutrition-div">
                         <p>Added Sugars (g)</p>
-                        <small style="padding:10px;">Use total sugar if added sugars uknown</small>
+
+                        <div>
+                            <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                            <label for="btn-check-outlined">Use Total Sugar</label>
+                        </div>
+    
                         <div class="textbox">
                             <input pattern="[0-9]*"  placeholder="Enter amount" inputmode="numeric" type="number" name='sugar' id="sugar">
                         </div>
