@@ -22,11 +22,11 @@
     <nav class="navbar navbar-light">
         <span class="navbar-brand mb-0 h1"><img src="img/wellscan_branding.png"></span>
     </nav>
-    <section class="container-fluid calc header-calc">
+    <!-- <section class="container-fluid calc header-calc">
         <div class="container">
             <h1>Calculate Rankings</h1>
         </div>
-    </section>
+    </section> -->
 
     <section class="container calc">
         
@@ -143,13 +143,17 @@
   
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-      AOS.init();
+      
 
       var form = document.querySelector("#calc-form");
       var result = document.querySelector("#result");
       var rankElement= document.querySelector("#rank");
       var catRadios = document.querySelectorAll("[name='foodType']");
       var btn_reset = document.querySelector("#btn_reset");
+
+      window.addEventListener('DOMContentLoaded', (event) => {
+            form.scrollIntoView();
+      });
 
       btn_reset.addEventListener('click', function(e) {
           e.preventDefault();
