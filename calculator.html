@@ -1,26 +1,45 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/main.css">
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <title>WellSCAN</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-light">
-        <span class="navbar-brand mb-0 h1"><img src="img/wellscan_branding.png"></span>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#"><img src="img/wellscan_branding.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="calculator.html">Calculator<span class="sr-only">(current)</span< /a>
+                </li>
+        </div>
     </nav>
     <section class="container-fluid calc header-calc">
         <div class="container">
@@ -38,37 +57,37 @@
                         <input type="radio" name='foodType' id="fruitVeg" value="fruit-vegetable">
                         <label for="fruitVeg" id="fruitVeg">Fruit / Vegetable</label>
                     </div>
-    
+
                     <div class="radio">
                         <input type="radio" name='foodType' id="protein" value="protein">
                         <label for="protein" id="protein">Protein</label>
                     </div>
-    
+
                     <div class="radio">
                         <input type="radio" name='foodType' id="dairy" value="dairy">
                         <label for="dairy" id="dairy">Dairy</label>
                     </div>
-    
+
                     <!-- <div class="radio">
                         <input type="radio" name='foodType' id="nonDairy" value="nonDairy">
                         <label for="nonDairy" id="nonDairy">Non-Dairy Alternative</label>
                     </div> -->
-    
+
                     <div class="radio">
                         <input type="radio" name='foodType' id="beverage" value="beverage">
                         <label for="beverage" id="beverage">Beverage</label>
                     </div>
-    
+
                     <div class="radio">
                         <input type="radio" name='foodType' id="mixedDish" value="mixed-dish">
                         <label for="mixedDish" id="mixedDish">Mixed Dish</label>
                     </div>
-    
+
                     <div class="radio">
                         <input type="radio" name='foodType' id="processedPackage" value="snack-whole-grain">
                         <label for="processedPackage" id="processedPackage">Whole Grain Snack</label>
                     </div>
-    
+
                     <!-- <div class="radio">
                         <input type="radio" name='foodType' id="dessert" value="dessert">
                         <label for="dessert" id="dessert">Dessert</label>
@@ -84,41 +103,44 @@
                         <label for="grainReg" id="grainReg">Non-Whole Grain</label>
                     </div>
 
-                    </div>
+                </div>
             </div>
-                
-                <div class="calc-sec">
-                    <h3>Nutrional Facts</h3>
 
-                    <div class="nutrition-div">
-                        <p>Sodium (mg)</p>
-                        <div class="textbox">
-                            <input pattern="[0-9]*" placeholder="Enter amount" inputmode="numeric" type="number" name='sodium' id="sodium">
-                        </div>
-                    </div>
+            <div class="calc-sec">
+                <h3>Nutrional Facts</h3>
 
-                    <div class="nutrition-div">
-                        <p>Saturated Fat (g)</p>
-                        <div class="textbox">
-                            <input pattern="[0-9]*"  placeholder="Enter amount" inputmode="numeric" type="number" name='satfat' id="satfat">
-                        </div>
+                <div class="nutrition-div">
+                    <p>Sodium (mg)</p>
+                    <div class="textbox">
+                        <input pattern="[0-9]*" placeholder="Enter amount" inputmode="numeric" type="number"
+                            name='sodium' id="sodium">
                     </div>
+                </div>
 
-                    <div class="nutrition-div">
-                        <p>Sugars (g)</p>
-                        <div class="textbox">
-                            <input pattern="[0-9]*"  placeholder="Enter amount" inputmode="numeric" type="number" name='sugar' id="sugar">
-                        </div>
+                <div class="nutrition-div">
+                    <p>Saturated Fat (g)</p>
+                    <div class="textbox">
+                        <input pattern="[0-9]*" placeholder="Enter amount" inputmode="numeric" type="number"
+                            name='satfat' id="satfat">
                     </div>
-    
-                    <!-- <h3>Added Sugars</h3>
+                </div>
+
+                <div class="nutrition-div">
+                    <p>Sugars (g)</p>
+                    <div class="textbox">
+                        <input pattern="[0-9]*" placeholder="Enter amount" inputmode="numeric" type="number"
+                            name='sugar' id="sugar">
+                    </div>
+                </div>
+
+                <!-- <h3>Added Sugars</h3>
                     <div class="row">
                         <div class="textbox">
                             <input pattern="[0-9]*" placeholder="Enter amount" inputmode="numeric" type="number" name='sugar' id="sugar" >
                         </div>
                     </div> -->
-                </div>
-                <button type="submit">Submit</button>
+            </div>
+            <button type="submit">Submit</button>
         </form>
     </section>
 
@@ -132,57 +154,64 @@
     <!-- Optional JavaScript -->
     <script src="main.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-      AOS.init();
+        AOS.init();
 
-      var form = document.querySelector("#calc-form");
-      var result = document.querySelector("#result");
-      var rankElement= document.querySelector("#rank");
+        var form = document.querySelector("#calc-form");
+        var result = document.querySelector("#result");
+        var rankElement = document.querySelector("#rank");
 
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
 
-        result.classList.add("d-none");
-        
-        let category = e.target.elements.foodType.value;
-        let sugars = e.target.elements.sugar.value;
-        let satfat = e.target.elements.satfat.value;
-        let sodium = e.target.elements.sodium.value;
+            result.classList.add("d-none");
 
-        let endpoint = "https://v2.api.wellscan.io/api/foods/rankFromNuts/" + category + "/" + sugars + "/" + sodium + "/" + satfat;
+            let category = e.target.elements.foodType.value;
+            let sugars = e.target.elements.sugar.value;
+            let satfat = e.target.elements.satfat.value;
+            let sodium = e.target.elements.sodium.value;
 
-        fetch(endpoint)
-                    .then(
-                        function(response) {
+            let endpoint = "https://v2.api.wellscan.io/api/foods/rankFromNuts/" + category + "/" + sugars + "/" + sodium + "/" + satfat;
+
+            fetch(endpoint)
+                .then(
+                    function (response) {
                         if (response.status !== 200) {
                             console.log('Looks like there was a problem. Status Code: ' +
-                            response.status);
+                                response.status);
                             return;
                         }
 
                         // Examine the text in the response
-                        response.json().then(function(data) {
+                        response.json().then(function (data) {
                             updateRankDisplay(data.rank);
                         });
-                        }
-                    )
-                    .catch(function(err) {
-                        console.log('Fetch Error :-S', err);
-                    });
-        
-      });
+                    }
+                )
+                .catch(function (err) {
+                    console.log('Fetch Error :-S', err);
+                });
 
-      function updateRankDisplay(rank) {
+        });
 
-        result.classList.remove("d-none");
-        rankElement.innerHTML = rank;
+        function updateRankDisplay(rank) {
 
-      }
+            result.classList.remove("d-none");
+            rankElement.innerHTML = rank;
+
+        }
     </script>
-  </body>
+</body>
+
 </html>
