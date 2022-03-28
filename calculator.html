@@ -20,7 +20,7 @@
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <title>WellSCAN</title>
+    <title>WellSCAN Calculator - Calculate HER Rankings</title>
 </head>
 
 <body>
@@ -33,25 +33,26 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item ">
                     <a class="nav-link" href="index.html">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="calculator.html">Calculator<span class="sr-only">(current)</span< /a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="calculator.html">Calculator</a>
                 </li>
         </div>
     </nav>
-    <section class="container-fluid calc header-calc">
+    <!-- <section class="container-fluid calc header-calc">
         <div class="container">
             <h1>Calculate Rankings</h1>
         </div>
-    </section>
+    </section> -->
 
     <section class="container calc">
-        <form id="calc-form" class="calc-form">
+
+
+        <form method="POST" action="#" id="calc-form" class="calc-form">
             <div class="calc-sec">
                 <h3>Category</h3>
-                <p>Select one</p>
                 <div class="row">
                     <div class="radio">
                         <input type="radio" name='foodType' id="fruitVeg" value="fruit-vegetable">
@@ -68,10 +69,10 @@
                         <label for="dairy" id="dairy">Dairy</label>
                     </div>
 
-                    <!-- <div class="radio">
-                        <input type="radio" name='foodType' id="nonDairy" value="nonDairy">
+                    <div class="radio">
+                        <input type="radio" name='foodType' id="nonDairy" value="non-dairy-alternative">
                         <label for="nonDairy" id="nonDairy">Non-Dairy Alternative</label>
-                    </div> -->
+                    </div>
 
                     <div class="radio">
                         <input type="radio" name='foodType' id="beverage" value="beverage">
@@ -107,15 +108,6 @@
             </div>
 
             <div class="calc-sec">
-                <h3>Nutrional Facts</h3>
-
-                <div class="nutrition-div">
-                    <p>Sodium (mg)</p>
-                    <div class="textbox">
-                        <input pattern="[0-9]*" placeholder="Enter amount" inputmode="numeric" type="number"
-                            name='sodium' id="sodium">
-                    </div>
-                </div>
 
                 <div class="nutrition-div">
                     <p>Saturated Fat (g)</p>
@@ -126,10 +118,30 @@
                 </div>
 
                 <div class="nutrition-div">
-                    <p>Sugars (g)</p>
+                    <p>Sodium (mg)</p>
                     <div class="textbox">
                         <input pattern="[0-9]*" placeholder="Enter amount" inputmode="numeric" type="number"
-                            name='sugar' id="sugar">
+                            name='sodium' id="sodium">
+                    </div>
+                </div>
+
+                <div class="nutrition-div">
+                    <p><select id="sugarType">
+                            <option value="added" selected>Added</option>
+                            <option value="total">Total</option>
+                            </option>
+                        </select> Sugars (g)</p>
+
+                    <div class="textbox">
+                        <input pattern="[0-9]*" placeholder="Enter amount" inputmode="numeric" type="number"
+                            name='sugars' id="sugars">
+                    </div>
+                </div>
+
+                <div class="nutrition-div">
+                    <p>Rank</p>
+                    <div class="textbox">
+                        <span id="result" class="d-none badge">choose <span id="rank"></span></span>
                     </div>
                 </div>
 
@@ -140,15 +152,12 @@
                         </div>
                     </div> -->
             </div>
-            <button type="submit">Submit</button>
+            <button class="btn btn-block btn-primary" type="submit">calculate</button>
+            <button id="btn_reset" class="btn btn-block btn-outline-secondary" type='reset"'>reset</button>
         </form>
     </section>
 
-    <section id="result" class="d-none container-fluid result">
-        <div class="result-bar">
-            <h2>The item entered should be choosen <strong id="rank">often</strong></h2>
-        </div>
-    </section>
+
 
 
     <!-- Optional JavaScript -->
@@ -166,24 +175,59 @@
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init();
+
 
         var form = document.querySelector("#calc-form");
         var result = document.querySelector("#result");
         var rankElement = document.querySelector("#rank");
+        var catRadios = document.querySelectorAll("[name='foodType']");
+        var btn_reset = document.querySelector("#btn_reset");
+        var input_sugar_type = document.querySelector("#sugarType");
+        var sugarType = "added";
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            form.scrollIntoView();
+        });
+
+        btn_reset.addEventListener('click', function (e) {
+            e.preventDefault();
+            result.classList.add("d-none");
+            rankElement.innerHTML = "";
+            form.reset();
+        })
+
+        input_sugar_type.addEventListener("change", function () {
+            sugarType = this.value;
+            console.log(sugarType);
+        });
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-
+            console.log("Submitted");
             result.classList.add("d-none");
 
             let category = e.target.elements.foodType.value;
-            let sugars = e.target.elements.sugar.value;
+            let sugars, added_sugars;
+
+            if (sugarType == "added") {
+                added_sugars = e.target.elements.sugars.value;
+                sugars = 0;
+            }
+
+            if (sugarType == "total") {
+                added_sugars = 0;
+                sugars = e.target.elements.sugars.value;
+            }
+
+
+
+
             let satfat = e.target.elements.satfat.value;
             let sodium = e.target.elements.sodium.value;
 
-            let endpoint = "https://v2.api.wellscan.io/api/foods/rankFromNuts/" + category + "/" + sugars + "/" + sodium + "/" + satfat;
 
+            let endpoint = "https://v2.api.wellscan.io/api/foods/rankFromNuts/" + category + "/" + satfat + "/" + sodium + "/" + added_sugars + "/" + sugars;
+            console.log(endpoint);
             fetch(endpoint)
                 .then(
                     function (response) {
@@ -202,15 +246,27 @@
                 .catch(function (err) {
                     console.log('Fetch Error :-S', err);
                 });
-
         });
 
         function updateRankDisplay(rank) {
 
+            result.classList.remove('badge--often');
+            result.classList.remove('badge--rarely');
+            result.classList.remove('badge--sometimes');
             result.classList.remove("d-none");
             rankElement.innerHTML = rank;
+            result.classList.add(`badge--${rank}`);
 
         }
+
+        catRadios.forEach(function (el) {
+            el.addEventListener("click", function () {
+
+                result.classList.add("d-none");
+                rankElement.innerHTML = "";
+            });
+        });
+
     </script>
 </body>
 
