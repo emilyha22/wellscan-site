@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+
+
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+
+        
+    </style>
+
+    <title>WellSCAN Calculator - Calculate HER Rankings</title>
+</head>
+
+<body>
+    <div id="app">
+        <v-app>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#"><img src="img/wellscan_branding.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="calculator.html">Calculator</a>
+                </li>
+        </div>
+    </nav>
+    <!-- <section class="container-fluid calc header-calc">
+        <div class="container">
+            <h1>Calculate Rankings</h1>
+        </div>
+    </section> -->
+
+    <section class="container-fluid header">
+        <div class="container">
+            <div class="row header-text justify-content-center align-items-center">
+                <div class="col-lg-10 header-text">
+                    <h1><span id="bold-header">Ranking Lookup</span> for Food Common Foods</h1>
+                </div>
+                <div class="col-lg-12">
+                    <h3>Search for a Food: </h3>
+
+                    <fieldset>
+
+                        <v-autocomplete dark :items="foodOptions" v-model="selectedFood" chips
+                        deletable-chips
+                        solo-inverted></v-autocomplete>
+
+                    </fieldset>
+                </div>                
+            </div>
+        </div>
+    </section>
+
+    <section class="container intro">
+        
+            <div class="section-pad">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="results" v-if="selectedFood">
+                            <div :class="results[selectedFood].rank.toLowerCase()">
+                                <h3>Results: <strong>{{selectedFood}}</strong></h3>
+                                <p>Category: <strong>{{ results[selectedFood].category }}</strong></p>
+                                <p>Rank: <strong>{{ results[selectedFood].rank }}</strong></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+       
+    </section>
+
+
+</v-app>
+</div>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <script src="main.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+        integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data() {
+                return {
+                    gapiKey: "AIzaSyCbgHVIP7dAz0jXudr6xBFEmUm2D1--hWs",
+                    spreadsheetId: "1sT0DvrgThLdjkX5E6mG5saLBZEwkc7rwVHTyDox4qFk",
+                    foodOptionsRaw: [],
+                    results: {},
+                    selectedFood: ''
+                }
+            },
+            async created() {
+
+                // This one can get general information on the spreadsheet, such as column and row ranges.
+                // const g = await get(`https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}?key=${this.gapiKey}`)
+
+                // Retrieves values in the range provided.
+                const g = await axios.get(
+                    `https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}/values/A1:E1000?key=${this.gapiKey}`
+                )
+
+                // Loop our values, transform readable/usable data.
+                for (let index = 0; index < g.data.values.length; index++) {
+
+                    // Retrieve one single row.
+                    const element = g.data.values[index];
+
+                    // Retrive the name of the food
+                    const foodName = element[1].toLowerCase()
+
+                    // Add to our list of selectable foods.
+                    this.foodOptionsRaw.push(foodName)
+
+                    // Save a result object with the food as key
+                    this.results[foodName] = {
+                        category: (element[2] === undefined) ? 'N/A' : element[2],
+                        rank: (element[3] === undefined) ? 'Unranked' : element[3],
+                    }
+                }
+            },
+            computed: {
+                foodOptions() {
+                    return this.foodOptionsRaw
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>
