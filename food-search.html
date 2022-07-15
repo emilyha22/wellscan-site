@@ -28,7 +28,26 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
+        .results>div {
+            padding:20px;
+            padding-bottom:10px;
+        }
 
+        .unranked {
+            background-color: #333;
+        }
+
+        .unranked * {
+            color: white!important;
+        }
+
+        .results>div p:last-child {
+            padding-bottom:0px;
+        }
+
+        .green * {
+            color: white !important;
+        }
         
     </style>
 
@@ -84,18 +103,19 @@
 
     <section class="container intro">
         
-            <div class="section-pad">
+            <div>
                 <div class="container">
                     <div class="row">
-                        
+                    <div class="col-lg-12">
+                        <h3 v-if="selectedFood">Results: <strong>{{selectedFood}}</strong></h3>
+
                         <div class="results" v-if="selectedFood">
                             <div :class="results[selectedFood].rank.toLowerCase()">
-                                <h3>Results: <strong>{{selectedFood}}</strong></h3>
                                 <p>Category: <strong>{{ results[selectedFood].category }}</strong></p>
                                 <p>Rank: <strong>{{ results[selectedFood].rank }}</strong></p>
                             </div>
                         </div>
-                        
+                    </div>
                     </div>
                 </div>
 
