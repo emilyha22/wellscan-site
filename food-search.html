@@ -88,16 +88,32 @@
         <div class="container">
             <div class="row header-text justify-content-center align-items-center">
                 <div class="col-lg-10 header-text">
-                    <h1><span id="bold-header">Ranking Lookup</span> for Food Common Foods</h1>
+                    <h1 class="text-center"><span id="bold-header">Lookup</span> the Category and SWAP Rank for Common Foods</h1>
                 </div>
                 <div class="col-lg-12">
                     <h3>Search for a Food: </h3>
 
                     <fieldset>
 
-                        <v-autocomplete dark :items="foodOptions" v-model="selectedFood" chips
-                        deletable-chips
-                        solo-inverted></v-autocomplete>
+                        <v-autocomplete
+                            dark
+                            :items="autocompleteOptions"
+                            v-model="selectedFood"
+                            chips
+                            deletable-chips
+                            solo-inverted
+                            label="Start typing to search"
+                            :search-input.sync="searchFoodInput"
+                            item-text="name"
+                            item-value="value"
+                        >
+                    
+                            <template #no-data>
+                                <v-list-item>
+                                    <v-list-item-title>Ex. apples</v-list-item-title>
+                                </v-list-item>
+                            </template>
+                        </v-autocomplete>
 
                     </fieldset>
                 </div>                
@@ -114,9 +130,12 @@
                         <h3 v-if="selectedFood">Results: <strong>{{selectedFood}}</strong></h3>
 
                         <div class="results" v-if="selectedFood">
-                            <div :class="results[selectedFood].rank.toLowerCase()">
+                            <div :class="resultCSSClass">
                                 <p>Category: <strong>{{ results[selectedFood].category }}</strong></p>
                                 <p>Rank: <strong>{{ results[selectedFood].rank }}</strong></p>
+                                <p v-if="results[selectedFood].source && results[selectedFood].source_id">
+                                    Source: <strong>{{ results[selectedFood].source }} {{ results[selectedFood].source_id }}</strong>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -164,45 +183,71 @@
                     spreadsheetId: "1sT0DvrgThLdjkX5E6mG5saLBZEwkc7rwVHTyDox4qFk",
                     foodOptionsRaw: [],
                     results: {},
-                    selectedFood: ''
+                    selectedFood: '',
+                    searchFoodInput: ''
                 }
             },
-            async created() {
+            created() {
 
                 // This one can get general information on the spreadsheet, such as column and row ranges.
                 // const g = await get(`https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}?key=${this.gapiKey}`)
 
                 // Retrieves values in the range provided.
-                const g = await axios.get(
-                    `https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}/values/A1:E1000?key=${this.gapiKey}`
-                )
+                axios.get(`https://sheets.googleapis.com/v4/spreadsheets/${this.spreadsheetId}/values/A1:E1000?key=${this.gapiKey}`).then((g) => {
+                    // Loop our values, transform readable/usable data.
+                    for (let index = 0; index < g.data.values.length; index++) {
+                        // Retrieve one single row.
+                        const element = g.data.values[index];
 
-                // Loop our values, transform readable/usable data.
-                for (let index = 0; index < g.data.values.length; index++) {
+                        // Retrive food metadata
+                        const food = {
+                            name: element[1].toLowerCase(),
+                            category: (element[2] === undefined) ? 'N/A' : element[2],
+                            rank: (element[3] === undefined) ? '' : element[3],
+                            source: (element[0] === undefined) ? null : element[0],
+                            source_id: (element[4] === undefined) ? null : element[4]
+                        };
 
-                    // Retrieve one single row.
-                    const element = g.data.values[index];
 
-                    // Retrive the name of the food
-                    const foodName = element[1].toLowerCase()
+                        // Add to our list of selectable foods.
+                        this.foodOptionsRaw.push({
+                            name: ( food.source && food.source_id ) ? food.name + ' (' + food.source + ', ID: ' + food.source_id + ')' : food.name,
+                            value: food.name,
+                        });
 
-                    // Add to our list of selectable foods.
-                    this.foodOptionsRaw.push(foodName)
-
-                    // Save a result object with the food as key
-                    this.results[foodName] = {
-                        category: (element[2] === undefined) ? 'N/A' : element[2],
-                        rank: (element[3] === undefined) ? 'Unranked' : element[3],
+                        // Save a result object with the food as key
+                        this.results[food.name] = food;
                     }
-                }
+                })
+
+                
             },
             computed: {
                 foodOptions() {
-                    return this.foodOptionsRaw
-                }
+                    return this.foodOptionsRaw;
+                },
+                autocompleteOptions() {
+                    // Not showing results when there is no input
+                    if ( this.searchFoodInput?.length > 0 ) {
+                        return this.foodOptions;
+                    }
+                    return [];
+                },
+                resultCSSClass() {
+                    const rank = this.results[this.selectedFood]?.rank;
+                    const approved_ranks = ['red', 'yellow', 'green', 'unranked'];
+                    let classes = '';
 
+                    if ( rank && approved_ranks.includes(rank.toLowerCase()) ) {
+                        classes += ' ' + rank.toLowerCase();
+                    } else {
+                        classes += ' rank-none';
+                    }
+
+                    return classes;
+                }
             }
-        })
+        });
     </script>
 </body>
 
