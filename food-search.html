@@ -141,7 +141,7 @@
                         <div class="results">
                             <div v-if="selectedFood" :class="resultCSSClass">
                                 <p>Category: <strong>{{ results[selectedFood].category }}</strong></p>
-                                <p>Rank: <strong>{{ results[selectedFood].rank }}</strong></p>
+                                <p>Rank: <strong>{{ selectedFoodRankedText }}</strong></p>
                                 <p v-if="results[selectedFood].source && results[selectedFood].source_id">
                                     Source: <strong>{{ results[selectedFood].source }} {{ results[selectedFood].source_id }}</strong>
                                 </p>
@@ -155,15 +155,9 @@
                                 </div>
                                 <div class="col-lg-6" v-show="selectedFoodTotalAnalyzed">
                                     <p v-if="selectedFood">Total Foods Analyzed: {{results[selectedFood].total_items_analyzed}} </p>
-                                    <p v-if="selectedFood">Green Foods: {{selectedFoodGreenFoods}} </p>
-                                    <p v-if="selectedFood">Yellow Foods: {{selectedFoodYellowFoods}} </p>
-                                    <p v-if="selectedFood">Red Foods: {{selectedFoodRedFoods}} </p>
-                                </div>
-                            </div>
-
-                            <div class="row" v-if="selectedFood && !selectedFoodTotalAnalyzed">
-                                <div class="col-lg-12">
-                                    <p>Data for number of foods analyzed has not been published yet.</p>
+                                    <p v-if="selectedFood">Choose Often (Green): {{selectedFoodGreenFoods}} </p>
+                                    <p v-if="selectedFood">Choose Sometimes (Yellow): {{selectedFoodYellowFoods}} </p>
+                                    <p v-if="selectedFood">Choose Rarely (Red): {{selectedFoodRedFoods}} </p>
                                 </div>
                             </div>
                             
@@ -204,8 +198,25 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
 
     <script>
+
+        const legendPaddingPlugin = {
+            beforeInit(chart) {
+                // Get reference to the original fit function
+                const originalFit = chart.legend.fit;
+
+                // Override the fit function
+                chart.legend.fit = function fit() {
+                    // Call original function and bind scope in order to use `this` correctly inside it
+                    originalFit.bind(chart.legend)();
+                    // Change the height as suggested in another answers
+                    this.height += 25;
+                }
+            }
+        };
+
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
@@ -232,33 +243,30 @@
                         // Retrieve one single row.
                         const element = g.data.values[index];
 
-                        // Retrive food metadata
-                        const food = {
-                            name: element[1].toLowerCase(),
-                            category: (element[2] === undefined) ? 'N/A' : element[2],
-                            rank: (element[3] === undefined) ? '' : element[3],
-                            source: (element[0] === undefined) ? null : element[0],
-                            source_id: (element[4] === undefined) ? null : element[4],
-                            total_items_analyzed: (element[5] === undefined) ? 0 : element[5],
-                            percent_green: (element[6] === undefined) ? 0 : element[6],
-                            percent_yellow: (element[7] === undefined) ? 0 : element[7],
-                            percent_red: (element[8] === undefined) ? 0 : element[8]
-                        };
+                        if ( element[0].toLowerCase() !== 'source' ) {
+                            // Retrive food metadata
+                            const food = {
+                                name: element[1].toLowerCase(),
+                                category: (element[2] === undefined) ? 'N/A' : element[2],
+                                rank: (element[3] === undefined) ? '' : element[3],
+                                source: (element[0] === undefined) ? null : element[0],
+                                source_id: (element[4] === undefined) ? null : element[4],
+                                total_items_analyzed: (element[5] === undefined) ? 0 : element[5],
+                                percent_green: (element[6] === undefined) ? 0 : element[6],
+                                percent_yellow: (element[7] === undefined) ? 0 : element[7],
+                                percent_red: (element[8] === undefined) ? 0 : element[8]
+                            };
 
-                        if ( food.name === 'baked beans, with pork' )  {
-                            console.log(element);
-                            console.log(food);
+
+                            // Add to our list of selectable foods.
+                            this.foodOptionsRaw.push({
+                                name: ( food.source && food.source_id ) ? food.name + ' (' + food.source + ', ID: ' + food.source_id + ')' : food.name,
+                                value: food.name,
+                            });
+
+                            // Save a result object with the food as key
+                            this.results[food.name] = food;
                         }
-
-
-                        // Add to our list of selectable foods.
-                        this.foodOptionsRaw.push({
-                            name: ( food.source && food.source_id ) ? food.name + ' (' + food.source + ', ID: ' + food.source_id + ')' : food.name,
-                            value: food.name,
-                        });
-
-                        // Save a result object with the food as key
-                        this.results[food.name] = food;
                     }
                 })
 
@@ -289,34 +297,55 @@
                     return classes;
                 },
                 selectedFoodGreenFoods() {
-                    const percent = this.results[this.selectedFood]?.percent_green
-                    const total = this.results[this.selectedFood]?.total_items_analyzed
+                    const percent = this.results[this.selectedFood]?.percent_green;
+                    const total = this.results[this.selectedFood]?.total_items_analyzed;
 
                     if ( percent && total ) {
-                        return parseInt(total * (parseFloat(percent) / 100))
+                        return parseInt(total * (parseFloat(percent) / 100));
                     }
-                    return 0
+                    return 0;
                 },
                 selectedFoodYellowFoods() {
-                    const percent = this.results[this.selectedFood]?.percent_yellow
-                    const total = this.results[this.selectedFood]?.total_items_analyzed
+                    const percent = this.results[this.selectedFood]?.percent_yellow;
+                    const total = this.results[this.selectedFood]?.total_items_analyzed;
 
                     if ( percent && total ) {
-                        return parseInt(total * (parseFloat(percent) / 100))
+                        return parseInt(total * (parseFloat(percent) / 100));
                     }
-                    return 0
+                    return 0;
                 },
                 selectedFoodRedFoods() {
-                    const percent = this.results[this.selectedFood]?.percent_red
-                    const total = this.results[this.selectedFood]?.total_items_analyzed
+                    const percent = this.results[this.selectedFood]?.percent_red;
+                    const total = this.results[this.selectedFood]?.total_items_analyzed;
 
                     if ( percent && total ) {
-                        return parseInt(total * (parseFloat(percent) / 100))
+                        return parseInt(total * (parseFloat(percent) / 100));
                     }
-                    return 0
+                    return 0;
                 },
                 selectedFoodTotalAnalyzed() {
-                    return this.results[this.selectedFood]?.total_items_analyzed ? this.results[this.selectedFood]?.total_items_analyzed : 0
+                    return this.results[this.selectedFood]?.total_items_analyzed ? this.results[this.selectedFood]?.total_items_analyzed : 0;
+                },
+                selectedFoodRankedText() {
+                    if ( this.results[this.selectedFood] ) {
+                        const r = this.results[this.selectedFood].rank.toLowerCase()
+                        switch(r) {
+                            case "green":
+                                return "Green - Choose Often";
+                                break;
+                            case "yellow":
+                                return "Yellow - Choose Sometimes";
+                                break;
+                            case "red":
+                                return "Red - Choose Rarely";
+                                break;
+                            default:
+                                if ( this.results[this.selectedFood].total_items_analyzed ) {
+                                    return "See distribution of product ranks below";
+                                }
+                                return "Unranked";
+                        }
+                    }
                 }
             },
             methods: {
@@ -330,9 +359,9 @@
                         type: 'doughnut',
                         data: {
                             labels: [
-                                'Green Foods',
-                                'Yellow Foods',
-                                'Red Foods'
+                                'Choose Often',
+                                'Choose Sometimes',
+                                'Choose Rarely'
                             ],
                             datasets: [{
                                 label: 'Foods Analyzed',
@@ -347,10 +376,21 @@
                                     'red'
                                 ]
                             }]
-                        }
+                        },
+                        options: {
+                            plugins: {
+                                labels: {
+                                    position: 'outside',
+                                    render: function(args) {
+                                        return args.value + '%';
+                                    },
+                                    outsidePadding: 4,
+                                    textMargin: 4
+                                }
+                            }
+                        },
+                        plugins: [legendPaddingPlugin]
                     };
-
-                    console.log(config);
                     this.chart = new Chart(ctx, config);
                 }
             }
