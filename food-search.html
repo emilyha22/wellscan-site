@@ -339,11 +339,14 @@
                             case "red":
                                 return "Red - Choose Rarely";
                                 break;
+                            case "unranked":
+                                return "Unranked";
+                                break;
                             default:
                                 if ( this.results[this.selectedFood].total_items_analyzed ) {
                                     return "See distribution of product ranks below";
                                 }
-                                return "Unranked";
+                                return "Not Yet Ranked";
                         }
                     }
                 }
