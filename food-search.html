@@ -149,11 +149,11 @@
 
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="chart" v-show="selectedFood && selectedFoodTotalAnalyzed">
+                                    <div class="chart" v-show="selectedFood && selectedFoodsTotalItemsAnalyzed">
                                         <canvas id="resultChart" width="400" height="400"></canvas>
                                     </div>
                                 </div>
-                                <div class="col-lg-6" v-show="selectedFoodTotalAnalyzed">
+                                <div class="col-lg-6" v-show="selectedFoodsTotalItemsAnalyzed">
                                     <p v-if="selectedFood">Total Foods Analyzed: {{results[selectedFood].total_items_analyzed}} </p>
                                     <p v-if="selectedFood">Choose Often (Green): {{selectedFoodGreenFoods}} </p>
                                     <p v-if="selectedFood">Choose Sometimes (Yellow): {{selectedFoodYellowFoods}} </p>
@@ -296,35 +296,35 @@
 
                     return classes;
                 },
+                selectedFoodsTotalItemsAnalyzed() {
+                    if ( !this.results[this.selectedFood]?.total_items_analyzed ) {
+                        return 0;
+                    }
+                    return parseInt(this.results[this.selectedFood]?.total_items_analyzed.replace(',', ''));
+                },
                 selectedFoodGreenFoods() {
                     const percent = this.results[this.selectedFood]?.percent_green;
-                    const total = this.results[this.selectedFood]?.total_items_analyzed;
 
-                    if ( percent && total ) {
-                        return parseInt(total * (parseFloat(percent) / 100));
+                    if ( percent && this.selectedFoodsTotalItemsAnalyzed ) {
+                        return parseInt(this.selectedFoodsTotalItemsAnalyzed * (parseFloat(percent) / 100));
                     }
                     return 0;
                 },
                 selectedFoodYellowFoods() {
                     const percent = this.results[this.selectedFood]?.percent_yellow;
-                    const total = this.results[this.selectedFood]?.total_items_analyzed;
 
-                    if ( percent && total ) {
-                        return parseInt(total * (parseFloat(percent) / 100));
+                    if ( percent && this.selectedFoodsTotalItemsAnalyzed ) {
+                        return parseInt(this.selectedFoodsTotalItemsAnalyzed * (parseFloat(percent) / 100));
                     }
                     return 0;
                 },
                 selectedFoodRedFoods() {
                     const percent = this.results[this.selectedFood]?.percent_red;
-                    const total = this.results[this.selectedFood]?.total_items_analyzed;
 
-                    if ( percent && total ) {
-                        return parseInt(total * (parseFloat(percent) / 100));
+                    if ( percent && this.selectedFoodsTotalItemsAnalyzed ) {
+                        return parseInt(this.selectedFoodsTotalItemsAnalyzed * (parseFloat(percent) / 100));
                     }
                     return 0;
-                },
-                selectedFoodTotalAnalyzed() {
-                    return this.results[this.selectedFood]?.total_items_analyzed ? this.results[this.selectedFood]?.total_items_analyzed : 0;
                 },
                 selectedFoodRankedText() {
                     if ( this.results[this.selectedFood] ) {
