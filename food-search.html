@@ -229,7 +229,7 @@
                     selectedFood: '',
                     searchFoodInput: '',
                     chart: null
-                }
+                };
             },
             created() {
 
@@ -243,7 +243,7 @@
                         // Retrieve one single row.
                         const element = g.data.values[index];
 
-                        if ( element[0].toLowerCase() !== 'source' ) {
+                        if ( Array.isArray(element) && element.length > 0 && element[0].toLowerCase() !== 'source' ) {
                             // Retrive food metadata
                             const food = {
                                 name: element[1].toLowerCase(),
