@@ -10,7 +10,7 @@
 /*=========== text styles =============*/
 h1{
   font-family: 'Arvo', serif;
-  font-size: 45px;
+  font-size: 45px !important;
 }
 
 
@@ -42,7 +42,7 @@ a.main-btn:hover, a.main-btn:focus, a.main-btn:active{
 
 h2{
   font-family: 'Arvo', serif;
-  font-size: 35px;
+  font-size: 35px !important;
   color: #30595F;
 }
 
