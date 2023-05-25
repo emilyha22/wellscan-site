@@ -67,6 +67,10 @@
                 padding: 0px 0px 100px 0px;
             }
         }
+
+        .food-meta {
+            font-size: 20px;
+        }
         
     </style>
 
@@ -159,12 +163,12 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-auto">
                                     <div class="chart" v-show="selectedFood && selectedFoodsTotalItemsAnalyzed">
-                                        <canvas id="resultChart" width="400" height="400"></canvas>
+                                        <canvas id="resultChart" width="500" height="500"></canvas>
                                     </div>
                                 </div>
-                                <div class="col-lg-6" v-show="selectedFoodsTotalItemsAnalyzed">
+                                <div class="col-auto food-meta" v-show="selectedFoodsTotalItemsAnalyzed">
                                     <p v-if="selectedFood">Total Foods Analyzed: {{results[selectedFood].total_items_analyzed}} </p>
                                     <p v-if="selectedFood">Choose Often (Green): {{selectedFoodGreenFoods}} </p>
                                     <p v-if="selectedFood">Choose Sometimes (Yellow): {{selectedFoodYellowFoods}} </p>
@@ -270,13 +274,15 @@
 
 
                             // Add to our list of selectable foods.
+                            const has_source = food.source && food.source_id;
+                            const food_value = has_source ? food.name + '-' + food.source_id : food.name;
                             this.foodOptionsRaw.push({
-                                name: ( food.source && food.source_id ) ? food.name + ' (' + food.source + ', ID: ' + food.source_id + ')' : food.name,
-                                value: food.name,
+                                name: has_source ? food.name + ' (' + food.source + ', ID: ' + food.source_id + ')' : food.name,
+                                value: food_value
                             });
 
                             // Save a result object with the food as key
-                            this.results[food.name] = food;
+                            this.results[food_value] = food;
                         }
                     }
                 })
@@ -400,6 +406,11 @@
                                     },
                                     outsidePadding: 4,
                                     textMargin: 4
+                                }
+                            },
+                            layout: {
+                                padding: {
+                                    bottom: 20
                                 }
                             }
                         },
