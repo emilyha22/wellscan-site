@@ -175,11 +175,11 @@ a.white-text {
 }
 
 .form-text{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0px 0px 40px 0px;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0px 0px 40px 0px !important;
 }
 
 form.contact label{

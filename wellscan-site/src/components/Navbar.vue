@@ -109,3 +109,8 @@ await router.push(path);
 navKey.value++;
 };
 </script>
+<style scoped>
+.nav-item {
+  cursor: pointer;
+}
+</style>
