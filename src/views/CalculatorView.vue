@@ -5,38 +5,82 @@
         <h3>Category</h3>
         <div class="row">
           <div class="radio">
-            <input v-model="category" type="radio" name="foodType" id="fruitVeg" value="fruit-vegetable" />
+            <input
+              v-model="category"
+              type="radio"
+              name="foodType"
+              id="fruitVeg"
+              value="fruit-vegetable"
+            />
             <label for="fruitVeg" id="fruitVeg">Fruit / Vegetable</label>
           </div>
 
           <div class="radio">
-            <input v-model="category" type="radio" name="foodType" id="protein" value="protein" />
+            <input
+              v-model="category"
+              type="radio"
+              name="foodType"
+              id="protein"
+              value="protein"
+            />
             <label for="protein" id="protein">Protein</label>
           </div>
 
           <div class="radio">
-            <input v-model="category" type="radio" name="foodType" id="dairy" value="dairy" />
+            <input
+              v-model="category"
+              type="radio"
+              name="foodType"
+              id="dairy"
+              value="dairy"
+            />
             <label for="dairy" id="dairy">Dairy</label>
           </div>
 
           <div class="radio">
-            <input v-model="category" type="radio" name="foodType" id="nonDairy" value="non-dairy-alternative" />
+            <input
+              v-model="category"
+              type="radio"
+              name="foodType"
+              id="nonDairy"
+              value="non-dairy-alternative"
+            />
             <label for="nonDairy" id="nonDairy">Non-Dairy Alternative</label>
           </div>
 
           <div class="radio">
-            <input v-model="category" type="radio" name="foodType" id="beverage" value="beverage" />
+            <input
+              v-model="category"
+              type="radio"
+              name="foodType"
+              id="beverage"
+              value="beverage"
+            />
             <label for="beverage" id="beverage">Beverage</label>
           </div>
 
           <div class="radio">
-            <input v-model="category" type="radio" name="foodType" id="mixedDish" value="mixed-dish" />
+            <input
+              v-model="category"
+              type="radio"
+              name="foodType"
+              id="mixedDish"
+              value="mixed-dish"
+            />
             <label for="mixedDish" id="mixedDish">Mixed Dish</label>
           </div>
 
           <div class="radio">
-            <input v-model="category" type="radio" name="foodType" id="processedPackage" value="snack-whole-grain" />
-            <label for="processedPackage" id="processedPackage">Whole Grain Snack</label>
+            <input
+              v-model="category"
+              type="radio"
+              name="foodType"
+              id="processedPackage"
+              value="snack-whole-grain"
+            />
+            <label for="processedPackage" id="processedPackage"
+              >Whole Grain Snack</label
+            >
           </div>
 
           <!-- <div class="radio">
@@ -45,12 +89,24 @@
             </div> -->
 
           <div class="radio">
-            <input v-model="category" type="radio" name="foodType" id="grainWhole" value="grain-whole" />
+            <input
+              v-model="category"
+              type="radio"
+              name="foodType"
+              id="grainWhole"
+              value="grain-whole"
+            />
             <label for="grainWhole" id="grainWhole">Whole Grain</label>
           </div>
 
           <div class="radio">
-            <input v-model="category" type="radio" name="foodType" id="grainReg" value="grain" />
+            <input
+              v-model="category"
+              type="radio"
+              name="foodType"
+              id="grainReg"
+              value="grain"
+            />
             <label for="grainReg" id="grainReg">Non-Whole Grain</label>
           </div>
         </div>
@@ -60,51 +116,77 @@
         <div class="nutrition-div">
           <p>Saturated Fat (g)</p>
           <div class="textbox">
-            <input v-model="satFat" pattern="[0-9]*" placeholder="Enter amount" inputmode="numeric" type="number"
-              name="satfat" id="satfat" />
+            <input
+              v-model="satFat"
+              pattern="[0-9]*"
+              placeholder="Enter amount"
+              inputmode="numeric"
+              type="number"
+              name="satfat"
+              id="satfat"
+            />
           </div>
         </div>
 
         <div class="nutrition-div">
           <p>Sodium (mg)</p>
           <div class="textbox">
-            <input v-model="sodium" pattern="[0-9]*" placeholder="Enter amount" inputmode="numeric" type="number"
-              name="sodium" id="sodium" />
+            <input
+              v-model="sodium"
+              pattern="[0-9]*"
+              placeholder="Enter amount"
+              inputmode="numeric"
+              type="number"
+              name="sodium"
+              id="sodium"
+            />
           </div>
         </div>
 
         <div class="nutrition-div">
-          <v-row>
-            <v-col class="">
-              <v-switch v-model="sugarSwitch" hide-details inset :label="sugarSwitch ? 'Total Sugar (g)' : 'Added Sugar (g)'"></v-switch>
-            </v-col>
-            <v-col cols="8"></v-col>
-          </v-row>
+          <v-switch v-model="sugarSwitch" hide-details inset>
+            <template v-slot:label>
+              <span class="switch-label">
+                {{ sugarSwitch ? "Total Sugar (g)" : "Added Sugar (g)" }}
+              </span>
+            </template>
+          </v-switch>
 
           <div class="textbox">
-            <input v-model="sugar" pattern="[0-9]*" placeholder="Enter amount" inputmode="numeric" type="number"
-              name="sugars" id="sugars" />
+            <input
+              v-model="sugar"
+              pattern="[0-9]*"
+              placeholder="Enter amount"
+              inputmode="numeric"
+              type="number"
+              name="sugars"
+              id="sugars"
+            />
           </div>
         </div>
 
         <div class="nutrition-div">
           <p>Rank</p>
           <div class="textbox" v-if="calculated">
-            <span id="result" class="badge" :class="badgeClass">choose {{ resRank }}<span id="rank"></span></span>
+            <span id="result" class="badge" :class="badgeClass"
+              >choose {{ resRank }}<span id="rank"></span
+            ></span>
           </div>
         </div>
-
-        <!-- <h3>Added Sugars</h3>
-            <div class="row">
-                <div class="textbox">
-                    <input pattern="[0-9]*" placeholder="Enter amount" inputmode="numeric" type="number" name='sugar' id="sugar" >
-                </div>
-            </div> -->
       </div>
-      <button @click.prevent="handleCalculate" class="btn btn-block btn-primary" type="submit">
+      <button
+        @click.prevent="handleCalculate"
+        class="btn btn-block btn-primary"
+        type="submit"
+      >
         calculate
       </button>
-      <button @click.prevent="handleReset" id="btn_reset" class="btn btn-block btn-outline-secondary" type="reset">
+      <button
+        @click.prevent="handleReset"
+        id="btn_reset"
+        class="btn btn-block btn-outline-secondary"
+        type="reset"
+      >
         reset
       </button>
     </form>
@@ -133,8 +215,7 @@ watch(sugarSwitch, () => {
   } else {
     sugarType.value = "added";
   }
-})
-
+});
 
 const handleCalculate = async () => {
   if (
@@ -198,4 +279,11 @@ const updateRankDisplay = (rank: string) => {
   font-size: 1.25rem;
 }
 
+.switch-label {
+  opacity: 1 !important;
+}
+
+label {
+  opacity: 1 !important;
+}
 </style>

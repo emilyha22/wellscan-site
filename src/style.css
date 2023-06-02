@@ -47,18 +47,18 @@ h2{
 }
 
 h3{
-  font-family: 'Arvo', serif;
-  font-size: 20px;
-  color:#D35A3E;
-  text-transform: uppercase;
-  margin: 20px 0px 15px 0px;
+  font-family: 'Arvo', serif !important;
+  font-size: 20px !important;
+  color:#D35A3E !important;
+  text-transform: uppercase !important;
+  margin: 20px 0px 15px 0px !important;
 }
 
 h4{
-font-family: 'roboto', sans-serif;
-font-size: 20px;   
-text-transform: uppercase;
-font-weight: 400;
+font-family: 'roboto', sans-serif !important;
+font-size: 20px !important;   
+text-transform: uppercase !important;
+font-weight: 400 !important;
 }
 
 
@@ -361,7 +361,7 @@ form.calc-form button:hover, form.calc-form button:focus, form.calc-form button:
 }
 
 .container-fluid.result{
-  padding: 0px;
+  padding: 0px !important;
 }
 
 .result-bar img{

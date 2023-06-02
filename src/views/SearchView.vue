@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app>
-      <section class="container-fluid header">
+      <section class="container-fluid header-search header">
         <div class="container">
           <div
             class="row header-text justify-content-center align-items-center"
@@ -21,15 +21,17 @@
                   index-name="dev_FOOD"
                   :insights="true"
                 >
-                  <aids-configure :hits-per-page="8" />
+                  <ais-configure :hits-per-page.camel="10" />
                   <div class="search-panel">
                     <div class="sear-panel__results">
                       <div class="searchbox">
                         <ais-search-box
+                          class="searchbox-input"
                           v-model="searchQuery"
                           placeholder="Search for a food"
                           autofocus
-                        />
+                          ><template v-slot:submit-icon></template
+                        ></ais-search-box>
                       </div>
                       <v-list
                         v-if="
@@ -93,13 +95,47 @@ const updateItem = (item: object) => {
 };
 </script>
 
-<style scoped>
-.header {
+<style>
+.header-search {
   height: 28rem;
 }
 .v-list {
   padding: 0;
   box-shadow: 0 4px 6px 0 rgba(32, 33, 36, 0.28);
   border-radius: 0, 0, 3px, 3px;
+}
+.ais-SearchBox-input {
+  background-color: hsl(11.52deg 62.81% 60.98%) !important;
+  min-height: 42px;
+  border-radius: 4px !important;
+  border: none !important;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12) !important;
+}
+
+.ais-Hits-item {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+  box-shadow: none !important;
+}
+
+.ais-SearchBox-input:focus {
+  background-color: white !important;
+}
+.ais-SearchBox-form {
+  border-radius: 4px !important;
+  min-height: 42px;
+}
+input::placeholder {
+  color: #f2cfc2 !important;
+}
+input:focus::placeholder {
+  color: black !important;
+}
+
+@media (min-width: 1904px) {
+  .container {
+    max-width: 1785px !important;
+  }
 }
 </style>

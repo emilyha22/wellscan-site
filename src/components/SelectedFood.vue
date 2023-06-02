@@ -62,7 +62,7 @@
     </div>
   </section>
 </template>
-<script lang="ts" setup>
+<script setup lang="ts" >
 import { ComputedRef, onMounted, onUpdated, ref, watch } from "vue";
 import type { Ref } from "vue";
 import { computed, defineProps } from "vue";
@@ -119,7 +119,10 @@ const resultRankText: ComputedRef<string> = computed(() => {
 });
 
 const numGreen: ComputedRef<number> = computed(() => {
-  const p: number = props.selectedItem["% GREEN"];
+  let p: number | string = props.selectedItem["% GREEN"];
+  if (p === "") {
+    p = 0;
+  }
   return parseInt(
     (
       props.selectedItem["Number of Items Analyzed"] *
@@ -129,7 +132,10 @@ const numGreen: ComputedRef<number> = computed(() => {
 });
 
 const numYellow: ComputedRef<number> = computed(() => {
-  const p: string = props.selectedItem["% YELLOW"].toString();
+  let p: number | string = props.selectedItem["% YELLOW"].toString();
+  if (p === "") {
+    p = 0;
+  }
   return parseInt(
     (
       props.selectedItem["Number of Items Analyzed"] *
@@ -139,7 +145,10 @@ const numYellow: ComputedRef<number> = computed(() => {
 });
 
 const numRed: ComputedRef<number> = computed(() => {
-  const p: number = props.selectedItem["% RED"];
+  let p: number | string = props.selectedItem["% RED"];
+  if (p === "") {
+    p = 0;
+  }
   return parseInt(
     (
       props.selectedItem["Number of Items Analyzed"] *
@@ -149,7 +158,6 @@ const numRed: ComputedRef<number> = computed(() => {
 });
 
 const initChart = () => {
-  console.log("make chart");
   const canvas = document.getElementById(
     "resultChart"
   ) as HTMLCanvasElement | null;
@@ -219,7 +227,7 @@ const initChart = () => {
 }
 
 .yellow * {
-  color: white !important;
+  color: black !important;
 }
 
 .yellow {
