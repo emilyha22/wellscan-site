@@ -346,15 +346,28 @@
                 selectedFoodRankedText() {
                     if ( this.results[this.selectedFood] ) {
                         const r = this.results[this.selectedFood].rank.toLowerCase()
+                        let text = '';
                         switch(r) {
                             case "green":
-                                return "Green - Choose Often";
+                                text = "Green - Choose Often";
+                                if ( this.results[this.selectedFood].percent_green ) {
+                                    text += " (" + this.results[this.selectedFood].percent_green + "%)";
+                                }
+                                return text;
                                 break;
                             case "yellow":
-                                return "Yellow - Choose Sometimes";
+                                text = "Yellow - Choose Sometimes";
+                                if ( this.results[this.selectedFood].percent_yellow ) {
+                                    text += " (" + this.results[this.selectedFood].percent_yellow + "%)";
+                                }
+                                return text;
                                 break;
                             case "red":
-                                return "Red - Choose Rarely";
+                                text = "Red - Choose Rarely";
+                                if ( this.results[this.selectedFood].percent_red ) {
+                                    text += " (" + this.results[this.selectedFood].percent_red + "%)";
+                                }
+                                return text;
                                 break;
                             case "unranked":
                                 return "Unranked";
