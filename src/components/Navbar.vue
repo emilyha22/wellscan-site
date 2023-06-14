@@ -28,7 +28,7 @@
           <a class="nav-link" @click.prevent="handlePageChange('/calculator')">Calculator</a>
         </li>
         <li class="nav-item" :class="searchActive">
-          <a class="nav-link" @click.prevent="handlePageChange('/search')">Food Lookup</a>
+          <a class="nav-link" @click.prevent="handlePageChange('/food-search')">Food Lookup</a>
         </li>
       </ul>
     </div>

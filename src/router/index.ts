@@ -17,7 +17,7 @@ const router = createRouter({
             component: CalculatorView,
         },
         {
-            path: '/search',
+            path: '/food-search',
             name: 'Search',
             component: SearchView
         }

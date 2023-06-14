@@ -11,7 +11,7 @@
               <div :class="resultCSSClass">
                 <p>
                   Category:
-                  <stong>{{ selectedItem["HER FOOD CATEGORY"] }}</stong>
+                  <strong>{{ selectedItem["HER FOOD CATEGORY"] }}</strong>
                 </p>
                 <p>
                   Rank: <strong>{{ resultRankText }}</strong>
