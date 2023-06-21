@@ -22,8 +22,8 @@ jobs:
           node-version: 18
 
       - name: Build project
-        run: npm ci
-        run: npm run build-ci
+      - run: npm ci
+      - run: npm run build
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
