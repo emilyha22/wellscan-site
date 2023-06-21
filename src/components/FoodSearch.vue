@@ -18,7 +18,7 @@
               <fieldset>
                 <ais-instant-search
                   :search-client="searchClient"
-                  index-name="dev_FOOD"
+                  index-name="food"
                   :insights="true"
                 >
                   <ais-configure :hits-per-page.camel="10" />
@@ -39,7 +39,7 @@
                           Object.keys(selectedItem).length === 0
                         "
                       >
-                        <ais-hits>
+                        <ais-hits :transform-items="transformItems">
                           <template v-slot:item="{ item }">
                             <v-list-item
                               @click="updateItem(item)"
@@ -76,6 +76,7 @@ import { watch } from "vue";
 import { ref } from "vue";
 import type { Ref } from "vue";
 import SelectedFood from "./SelectedFood.vue";
+import type { AlgoliaFoodItem } from '../types'
 
 const searchClient = ref(
   algoliasearch("ZUU3PQA9BG", "7feb18cee392e4b48112a136d6708d1a")
@@ -94,6 +95,15 @@ watch(searchQuery, (val) => {
 const updateItem = (item: object) => {
   selectedItem.value = item;
   selectedFoodKey.value++;
+};
+
+// Responsible for transforming the visible label in the dropdown to include TEAFAP info if relevant.
+const transformItems = (items: AlgoliaFoodItem[]) => {
+  return items.map((item) => {
+    let i = { ...item };
+    i._highlightResult["ITEM CARD NAME"].value = item.SOURCE ? `${item["ITEM CARD NAME"]} (${item.SOURCE}: ${item["USDA WBSCM ID"]})`: `${item["ITEM CARD NAME"]}`
+    return i;
+  });
 };
 </script>
 

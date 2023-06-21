@@ -191,7 +191,10 @@ const initChart = () => {
             align: "end",
             offset: 2,
             formatter: function(value : any) {
-              return value + '%';
+              if ( value ) {
+                return value + '%';
+              }
+              return "";
             }
           },
           legend: {
