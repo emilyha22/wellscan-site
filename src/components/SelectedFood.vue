@@ -65,8 +65,11 @@
 <script setup lang="ts" >
 import { ComputedRef, onMounted, onUpdated, ref, watch } from "vue";
 import type { Ref } from "vue";
-import { computed, defineProps } from "vue";
+import { computed } from "vue";
 import Chart, { ChartItem } from "chart.js/auto";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+Chart.register(ChartDataLabels);
+
 
 const props = defineProps({
   selectedItem: {
@@ -99,17 +102,13 @@ const resultRankText: ComputedRef<string> = computed(() => {
   const rank = props.selectedItem["HER RANK"].toLowerCase();
   switch (rank) {
     case "green":
-      return "Green - Choose Often";
-      break;
+      return `Green - Choose Often (${props.selectedItem["% GREEN"]}%)`;
     case "yellow":
-      return "Yellow - Choose Sometimes";
-      break;
+      return `Yellow - Choose Sometimes (${props.selectedItem["% YELLOW"]}%)`;
     case "red":
-      return "Red - Choose Rarely";
-      break;
+      return `Red - Choose Rarely (${props.selectedItem["% RED"]}%)`;
     case "unranked":
       return "Unranked";
-      break;
     default:
       if (props.selectedItem["Number of Items Analyzed"]) {
         return "See distribution of product ranks below";
@@ -158,6 +157,7 @@ const numRed: ComputedRef<number> = computed(() => {
 });
 
 const initChart = () => {
+
   const canvas = document.getElementById(
     "resultChart"
   ) as HTMLCanvasElement | null;
@@ -185,16 +185,29 @@ const initChart = () => {
       },
       options: {
         plugins: {
-          labels: {
-            position: "outside",
-            render: (args: any) => {
-              return args.value + "%";
-            },
-            outsidePadding: 4,
-            textMargin: 4,
+          datalabels: {
+            display: "auto",
+            anchor: "end",
+            align: "end",
+            offset: 2,
+            formatter: function(value : any) {
+              return value + '%';
+            }
           },
+          legend: {
+            display: false
+          }
+        },
+        layout: {
+          padding: {
+            top: 20,
+            left: 40,
+            right: 40,
+            bottom: 20
+          }
         },
       },
+      plugins: [ChartDataLabels],
     };
 
     chart.value = new Chart(ctx, config);

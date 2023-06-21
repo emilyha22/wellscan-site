@@ -10,6 +10,7 @@ export default defineConfig({
       input: {
         index: resolve(__dirname, 'index.html'),
         calculator: resolve(__dirname, 'calculator.html'),
+        'food-search': resolve(__dirname, 'food-search.html'),
       },
     },
   }
