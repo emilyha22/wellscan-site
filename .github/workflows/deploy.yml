@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - algolia_search/bk
+      - main
 
   # Allows running it manually from actions tab
   workflow_dispatch:
